@@ -1,0 +1,32 @@
+server:
+  port: 88
+spring:
+  application:
+    name: mall-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+      # 对象存储
+      - id: third_party_route
+        uri: lb://mall-third-party:8560
+        predicates:
+        - Path=/api/third/**
+        filters:
+        - RewritePath=/api/third/(?<segment>/?.*), /$\{segment}
+      #商品路由
+      - id: product_route
+        uri: lb://mall-product:8556
+        predicates:
+        - Path=/api/product/**
+        filters:
+        - RewritePath=/api/(?<segment>/?.*), /mall-product/$\{segment}
+      #系统路由
+      - id: admin_route
+        uri: lb://renren-fast:8080
+        predicates:
+        - Path=/api/**
+        filters:
+        - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}

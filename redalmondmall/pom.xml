@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.almond</groupId>
+    <artifactId>mall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>mall</name>
+    <description>总项目</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!--优惠券-->
+        <module>mall-coupon</module>
+        <!--会员-->
+        <module>mall-member</module>
+        <!--订单-->
+        <module>mall-order</module>
+        <!--商品-->
+        <module>mall-product</module>
+        <!--仓储-->
+        <module>mall-ware</module>
+        <!--人人开源后台-->
+        <module>renren-fast</module>
+        <!--人人开源代码生成-->
+        <module>renren-generator</module>
+        <module>mall-common</module>
+    </modules>
+
+</project>
