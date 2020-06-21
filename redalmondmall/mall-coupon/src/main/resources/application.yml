@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 8561
 spring:
   application:
     name: mall-coupon
