@@ -29,3 +29,19 @@ export function isPhone (s) {
 export function isURL (s) {
   return /^http[s]?:\/\/.*/.test(s)
 }
+
+/**
+ * 首字母
+ * @param {*} val
+ */
+export function validatefirstLetter (val) {
+  return /^[A-Za-z]{1}$/.test(val)
+}
+
+/**
+ * 排序
+ * @param {*} val
+ */
+export function validateSort (val) {
+  return /^\d{1,5}$/.test(val)
+}

@@ -14,8 +14,9 @@
       <el-form-item label="品牌名" prop="name">
         <el-input v-model="dataForm.name" placeholder="品牌名"></el-input>
       </el-form-item>
-      <el-form-item label="品牌logo地址" prop="logo">
-        <el-input v-model="dataForm.logo" placeholder="品牌logo地址"></el-input>
+      <el-form-item label="品牌logo" prop="logo">
+        <!-- <el-input v-model="dataForm.logo" placeholder="品牌logo"></el-input> -->
+        <single-upload v-model="dataForm.logo"/>
       </el-form-item>
       <el-form-item label="介绍" prop="descript">
         <el-input v-model="dataForm.descript" placeholder="介绍"></el-input>
@@ -44,8 +45,25 @@
 </template>
 
 <script>
+import singleUpload from "@/components/upload/singleUpload"
+import { validatefirstLetter, validateSort } from "@/utils/validate"
 export default {
+  components: { singleUpload },
   data() {
+    var checkFirstLetter = (rule, value, callback) => {
+      if(!validatefirstLetter(value)){
+        callback(new Error('首字母只能为单一英文字符'))
+      } else {
+        callback()
+      }
+    }
+    var checkSort = (rule, value, callback) => {
+      if(!validateSort(value)){
+        callback(new Error('排序最大为5位非负整数'))
+      } else {
+        callback()
+      }
+    }
     return {
       visible: false,
       dataForm: {
@@ -73,9 +91,13 @@ export default {
           }
         ],
         firstLetter: [
-          { required: true, message: "检索首字母不能为空", trigger: "blur" }
+          { required: true, message: "检索首字母不能为空", trigger: "blur" },
+          { validator: checkFirstLetter, trigger: 'blur' }
         ],
-        sort: [{ required: true, message: "排序不能为空", trigger: "blur" }]
+        sort: [
+          { required: true, message: "排序不能为空", trigger: "blur" },
+          { validator: checkSort, trigger: 'blur' }
+        ]
       }
     };
   },
